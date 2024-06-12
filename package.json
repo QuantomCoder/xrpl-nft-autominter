@@ -1,0 +1,32 @@
+{
+  "name": "xrpl-nft-automint",
+  "version": "0.0.3",
+  "description": "A TypeScript/JavaScript package to mint NFTs on XRP Ledger in Node.js without IPFS logics",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuantomCoder/xrpl-nft-automint.git"
+  },
+  "keywords": [
+    "nft"
+  ],
+  "author": "Quantom Coder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/QuantomCoder/xrpl-nft-automint/issues"
+  },
+  "homepage": "https://github.com/QuantomCoder/xrpl-nft-automint#readme",
+  "devDependencies": {
+    "aws-sdk": "^2.1640.0",
+    "axios": "^1.7.2",
+    "form-data": "^4.0.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "xrpl": "^3.1.0"
+  }
+}
