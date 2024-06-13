@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QuantomCoder/xrpl-nft-automint.git"
+    "url": "git+https://github.com/QuantomCoder/xrpl-nft-autominter.git"
   },
   "keywords": [
     "nft","ipfs","mint without ipfs","xrpl","xrpl nfts"
@@ -18,9 +18,9 @@
   "author": "Quantom Coder",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/QuantomCoder/xrpl-nft-automint/issues"
+    "url": "https://github.com/QuantomCoder/xrpl-nft-autominter/issues"
   },
-  "homepage": "https://github.com/QuantomCoder/xrpl-nft-automint#readme",
+  "homepage": "https://github.com/QuantomCoder/xrpl-nft-autominter#readme",
   "devDependencies": {
     "aws-sdk": "^2.1640.0",
     "axios": "^1.7.2",
