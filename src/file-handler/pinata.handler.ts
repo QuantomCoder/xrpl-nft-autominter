@@ -1,4 +1,4 @@
-import {  S3BucketConnectionAttributes, S3BucketObjectRetrivalAttributes, PinataConfigAttributes } from '../types/config'
+import { S3BucketConnectionAttributes, S3BucketObjectRetrivalAttributes, PinataConfigAttributes } from '../types/config'
 import * as AWS from 'aws-sdk';
 import FormData from 'form-data';
 import axios from 'axios';
@@ -9,10 +9,10 @@ class PinataHandler {
         if (typeof fileLink == "string") {
             this.updateJsonOnBucket(json, s3Conection, fileLink)
         }
-        else if(typeof fileLink == "boolean"){
+        else if (typeof fileLink == "boolean") {
             return
         }
-        const jsonCID=await this.uploadJson(json, s3Conection, pinataCredientials)
+        const jsonCID = await this.uploadJson(json, s3Conection, pinataCredientials)
         return jsonCID
     }
     protected async uploadFile(fileKeys: S3BucketObjectRetrivalAttributes, s3Conection: S3BucketConnectionAttributes, pinataCredientials: PinataConfigAttributes) {
@@ -23,12 +23,12 @@ class PinataHandler {
             const fileStream = s3
                 .getObject({ Bucket: fileKeys.Bucket, Key: fileKeys.Key })
                 .createReadStream();
-
+            const fileNameSplitted = fileKeys.Key.split('/');
+            const filePath = fileNameSplitted[fileNameSplitted.length - 1];
             const formData = new FormData();
             formData.append("file", fileStream, {
-                filepath: fileKeys.Key,
+                filepath: filePath,
             });
-
             const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
                 maxBodyLength: Infinity,
                 headers: {
@@ -36,9 +36,8 @@ class PinataHandler {
                     Authorization: `Bearer ${pinataCredientials.PinataToken}`,
                 },
             });
-            const fileSplitted = fileKeys.Key.split('/');
-            const fileName = fileSplitted[fileSplitted.length - 1];
-            const imageIPFSUrl = `https://ipfs.io/ipfs/${response.data.IpfsHash}/${fileName}`;
+
+            const imageIPFSUrl = `https://ipfs.io/ipfs/${response.data.IpfsHash}`;
             return imageIPFSUrl;
         } catch (err) {
             console.error("Error uploading image to Pinata:", err);
@@ -53,10 +52,11 @@ class PinataHandler {
             const fileStream = s3
                 .getObject({ Bucket: fileKeys.Bucket, Key: fileKeys.Key })
                 .createReadStream();
-
+            const jsonPathSplitted = fileKeys.Key.split('/');
+            const jsonPath = jsonPathSplitted[jsonPathSplitted.length - 1];
             const formData = new FormData();
             formData.append("file", fileStream, {
-                filepath: fileKeys.Key,
+                filepath: jsonPath,
             });
 
             const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
@@ -66,7 +66,8 @@ class PinataHandler {
                     Authorization: `Bearer ${pinataCredientials.PinataToken}`,
                 },
             });
-            
+
+            const jsonIPFSUrl = `ipfs/${response.data.IpfsHash}`;
             return response.data.IpfsHash;
         } catch (err) {
             console.error("Error uploading image to Pinata:", err);
