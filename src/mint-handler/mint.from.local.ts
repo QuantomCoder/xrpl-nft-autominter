@@ -1,10 +1,10 @@
 import { NFTokenMint, convertStringToHex,Client,Wallet,TransactionMetadata} from 'xrpl';
 import PinataHandler from '../file-handler/pinata.handler';
-import { PinataConfigAttributes, S3BucketConnectionAttributes, S3BucketObjectRetrivalAttributes } from '../types/config';
+import { PinataConfigAttributes } from '../types/config';
 import { MINTINGACCOUNTDETAILS } from '../types/mint';
-class AWSCloudMint extends PinataHandler {
-    public cloadMintWithJson = async (s3Conection: S3BucketConnectionAttributes, pinataCredientials: PinataConfigAttributes, file: S3BucketObjectRetrivalAttributes, json: S3BucketObjectRetrivalAttributes, XRP_NETWORK: string, MINTINGACCOUNTDETAILS: MINTINGACCOUNTDETAILS, NFTaxon: number, TransferFee: number, flag: number, LARGE_INTEGER: number) => {
-        let uri = await this.fileAndJsonOnCloud(s3Conection, pinataCredientials, file, json);
+class LocalMint extends PinataHandler {
+    public localMintWithJson = async ( pinataCredientials: PinataConfigAttributes, filePath:string, jsonPath: string, XRP_NETWORK: string, MINTINGACCOUNTDETAILS: MINTINGACCOUNTDETAILS, NFTaxon: number, TransferFee: number, flag: number, LARGE_INTEGER: number) => {
+        let uri = await this.getMetaUriFromLocal( pinataCredientials, filePath, jsonPath);
         const mintPayload: NFTokenMint = {
             TransactionType: "NFTokenMint",
             Account: MINTINGACCOUNTDETAILS.MINTING_ACCOUNT_WALLET_ADDRESS,
@@ -44,6 +44,6 @@ class AWSCloudMint extends PinataHandler {
         }
     }
 }
-const Mint1=new AWSCloudMint()
-export const MintThrougCloud=Mint1.cloadMintWithJson
-export const getUri=Mint1.fileAndJsonOnCloud
+const Mint1=new LocalMint()
+export const localMintWithJson=Mint1.localMintWithJson
+export const getUriUsingLocalMachine=Mint1.getMetaUriFromLocal

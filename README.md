@@ -1,6 +1,6 @@
 # xrpl-nft-autominter
 
-A TypeScript/JavaScript package to mint NFTs on XRP Ledger in Node.js without IPFS logic.
+A *TypeScript/JavaScript* package to mint NFTs on XRP Ledger in Node.js without IPFS logic.
 
 # Importance and Implementation
 
@@ -43,7 +43,7 @@ const { MintThrougCloud } = require("xrpl-nft-autominter");
 
 #Types to use
 
-Ensure these types are used to mint an NFT:
+Ensure these types are used to *mint an NFT*:
 
 ```javascript
 interface S3BucketConnectionAttributes {
@@ -70,7 +70,7 @@ interface MintingAccountDetails {
 
 ```
 
-The MintThroughCloud function returns a string which represents your NFT token ID upon successful minting.
+The **MintThroughCloud** function returns a string which represents your NFT token ID upon successful minting.
 
 
 ```javascript
@@ -123,10 +123,68 @@ const nftokenID = await MintThroughCloud(
 
 ```
 
-# Happy Minting 😎
+# Minting NFTs from a Local Machine
+
+
+Now, let's move on to minting from a local machine. When minting from a local machine, 
+you need to provide the **imagePath**, **jsonPath**, and **Pinata credentials**.
+
+    First, import this function as follows:
+  
+  ```javascript
+import { localMintWithJson } from "xrpl-nft-autominter";
+```
+    or using CommonJS:
+
+```javascript
+const { localMintWithJson } = require("xrpl-nft-autominter");
+```
+The **localMintWithJson** function returns a string which represents your NFT token ID upon successful minting.
+
+
+```javascript
+
+const pinataCredentials: PinataConfigAttributes = {
+  PinataToken: "Your Pinata Token",
+  pinata_api_key: "Your Pinata API Key",
+  pinata_secret_api_key: "Your Pinata API Secret",
+};
+
+const filePath: string = "Path To Your File"
+
+const json: string = "Path To Your Json i.e MetaData"
+
+const XRP_NETWORK: string = "Testnet or Mainnet URL";
+
+const MintingAccountDetails: MintingAccountDetails = {
+  MINTING_ACCOUNT_WALLET_ADDRESS: "Your Minting Account Wallet Address",
+  MINTING_ACCOUNT_SECRET_KEY: "Your Minting Account Secret",
+};
+
+const nfTokenTaxon: number = "NFT Taxonomy ID"; 
+const largeInteger: number = "Large integer on ledger"; 
+const transferFee: number = "Transfer fee to set"; 
+const flag: number = "Flag to set burnable/transferable properties";
+
+const nftokenID = await localMintWithJson(
+  pinataCredentials,
+  filePath,
+  jsonPath,
+  XRP_NETWORK,
+  MintingAccountDetails,
+  nfTokenTaxon,
+  transferFee,
+  flag,
+  largeInteger
+);
+
+```
+
+## Happy Minting 😎
 
 Hope you enjoyed auto minting
 
 # What's Next
 
-Future updates will include features such as minting from local machines and support for various cloud providers besides AWS. Additionally, options for minting with and without JSON metadata will be available.
+Future updates will include features such as minting and support for various cloud providers like GCP, Azure, IBM, Oracle, and Alibaba Cloud. It will also support IPFS providers such as Infura, Fleek, Temporal, and Textile. Additionally, there will be options for minting with and without JSON metadata.
+
