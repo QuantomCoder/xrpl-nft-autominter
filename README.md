@@ -33,12 +33,12 @@ npm install xrpl-nft-autominter
     First, import the function to mint an NFT:
 
 ```javascript
-import { MintThrougCloud } from "xrpl-nft-autominter";
+import { MintThrougAWSCloud } from "xrpl-nft-autominter";
 ```
     or using CommonJS:
 
 ```javascript
-const { MintThrougCloud } = require("xrpl-nft-autominter");
+const { MintThrougAWSCloud } = require("xrpl-nft-autominter");
 ```
 
 #Types to use
@@ -70,7 +70,7 @@ interface MintingAccountDetails {
 
 ```
 
-The **MintThroughCloud** function returns a string which represents your NFT token ID upon successful minting.
+The **MintThrougAWSCloud** function returns a string which represents your NFT token ID upon successful minting.
 
 
 ```javascript
@@ -108,7 +108,7 @@ const largeInteger: number = "Large integer on ledger";
 const transferFee: number = "Transfer fee to set"; 
 const flag: number = "Flag to set burnable/transferable properties";
 
-const nftokenID = await MintThroughCloud(
+const nftokenID = await MintThrougAWSCloud(
   s3Connection,
   pinataCredentials,
   file,

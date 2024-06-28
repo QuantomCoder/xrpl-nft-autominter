@@ -12,5 +12,9 @@ export interface PinataConfigAttributes{
     pinata_api_key:string,
     pinata_secret_api_key:string
 }
+export interface GcsBucketObjectRetrivalAttributes{
+    bucketName:string, // This is the bucket name
+    fileName:string // This is path to that specific object
+}
 export const PINATA_API_PINFILETOIPFS:string
 
