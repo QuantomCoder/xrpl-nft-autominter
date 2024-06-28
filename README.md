@@ -152,7 +152,7 @@ const pinataCredentials: PinataConfigAttributes = {
 
 const filePath: string = "Path To Your File"
 
-const json: string = "Path To Your Json i.e MetaData"
+const jsonPath: string = "Path To Your Json i.e MetaData"
 
 const XRP_NETWORK: string = "Testnet or Mainnet URL";
 

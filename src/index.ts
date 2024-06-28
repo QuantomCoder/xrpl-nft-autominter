@@ -1,2 +1,1 @@
-export * from './mint-handler/mint.with.cloud';
-export * from "./mint-handler/mint.from.local"
+export * from './mint-handler/index'
