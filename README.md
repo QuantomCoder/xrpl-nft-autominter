@@ -11,7 +11,7 @@ The `xrpl-nft-autominter` is built on the top of `xrpl` package and it provides 
 Key features include:
 
 - **Simplicity**: Easily mint NFTs using Node.js with minimal setup.
-- **Integration**: Seamless integration with AWS S3 for file storage and retrieval.
+- **Integration**: Seamless integration with AWS S3, GCS for file storage and retrieval.
 - **Customization**: Flexible options for specifying XRP network, transfer fees, taxonomy, and other parameters.
 - **Security**: Securely manage wallet credentials for minting operations.
 
@@ -122,6 +122,84 @@ const nftokenID = await MintThrougAWSCloud(
 );
 
 ```
+# Minting NFTs using Google Cloud Storage
+    First, import the function to mint an NFT using GCP:
+
+```javascript
+import { MintThrougAWSCloud } from "xrpl-nft-autominter";
+```
+    or using CommonJS:
+
+```javascript
+const { MintThrougAWSCloud } = require("xrpl-nft-autominter");
+```
+
+#Types to use
+
+Ensure these types are used to *mint an NFT*:
+```javascript
+ 
+ interface PinataConfigAttributes{
+    PinataToken:string,
+    pinata_api_key:string,
+    pinata_secret_api_key:string
+}
+
+
+ interface GcsBucketObjectRetrivalAttributes{
+    bucketName:string, // This is the bucket name
+    fileName:string // This is path to that specific object
+}
+
+```
+
+The **MintThrougGcpCloud** function returns a string which represents your NFT token ID upon successful minting.
+
+
+```javascript
+
+const pinataCredentials: PinataConfigAttributes = {
+  PinataToken: "Your Pinata Token",
+  pinata_api_key: "Your Pinata API Key",
+  pinata_secret_api_key: "Your Pinata API Secret",
+};
+
+const gcpServiceAccountJsonPath:string="Path To Your GCP Service Account Auth Json"
+
+const file: GcsBucketObjectRetrivalAttributes = {
+  Bucket: "Your Bucket Name",
+  Key: "Path to File",
+};
+
+const json: GcsBucketObjectRetrivalAttributes = {
+  Bucket: "Your Bucket Name",
+  Key: "Path to File",
+};
+
+const XRP_NETWORK: string = "Testnet or Mainnet URL";
+
+const MintingAccountDetails: MintingAccountDetails = {
+  MINTING_ACCOUNT_WALLET_ADDRESS: "Your Minting Account Wallet Address",
+  MINTING_ACCOUNT_SECRET_KEY: "Your Minting Account Secret",
+};
+
+const nfTokenTaxon: number = "NFT Taxonomy ID"; 
+const largeInteger: number = "Large integer on ledger"; 
+const transferFee: number = "Transfer fee to set"; 
+const flag: number = "Flag to set burnable/transferable properties";
+
+const nftokenID = await MintThrougGcpCloud(
+  gcpServiceAccountJsonPath,
+  pinataCredentials,
+  file,
+  json,
+  XRP_NETWORK,
+  MintingAccountDetails,
+  nfTokenTaxon,
+  transferFee,
+  flag,
+  largeInteger
+);
 
 # Minting NFTs from a Local Machine
 

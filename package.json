@@ -1,6 +1,6 @@
 {
   "name": "xrpl-nft-autominter",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A TypeScript/JavaScript package to mint NFTs on XRP Ledger in Node.js without IPFS logics",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

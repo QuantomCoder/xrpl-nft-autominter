@@ -11,7 +11,7 @@ class PinataAPi {
             formData.append("file", fileStream, {
                 filepath: "image.png",
             });
-            const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", fileStream, {
+            const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
                 maxBodyLength: Infinity,
                 headers: {
                     "Content-Type": `multipart/form-data; boundary=${formData.getBoundary()}`,
