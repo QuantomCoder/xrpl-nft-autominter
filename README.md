@@ -30,18 +30,18 @@ npm install xrpl-nft-autominter
 
 # How to use this?
 
-    First, import the function to mint an NFT:
+First, import the function to mint an NFT:
 
 ```javascript
 import { MintThrougAWSCloud } from "xrpl-nft-autominter";
 ```
-    or using CommonJS:
+or using CommonJS:
 
 ```javascript
 const { MintThrougAWSCloud } = require("xrpl-nft-autominter");
 ```
 
-#Types to use
+#### Types to use
 
 Ensure these types are used to *mint an NFT*:
 
@@ -123,18 +123,18 @@ const nftokenID = await MintThrougAWSCloud(
 
 ```
 # Minting NFTs using Google Cloud Storage
-    First, import the function to mint an NFT using GCP:
+First, import the function to mint an NFT using GCP:
 
 ```javascript
-import { MintThrougAWSCloud } from "xrpl-nft-autominter";
+import { MintThrougGcpCloud } from "xrpl-nft-autominter";
 ```
-    or using CommonJS:
+or using CommonJS:
 
 ```javascript
-const { MintThrougAWSCloud } = require("xrpl-nft-autominter");
+const { MintThrougGcpCloud } = require("xrpl-nft-autominter");
 ```
 
-#Types to use
+#### Types to use
 
 Ensure these types are used to *mint an NFT*:
 ```javascript
@@ -201,18 +201,20 @@ const nftokenID = await MintThrougGcpCloud(
   largeInteger
 );
 
+```
+
 # Minting NFTs from a Local Machine
 
 
 Now, let's move on to minting from a local machine. When minting from a local machine, 
 you need to provide the **imagePath**, **jsonPath**, and **Pinata credentials**.
 
-    First, import this function as follows:
+First, import this function as follows:
   
   ```javascript
 import { localMintWithJson } from "xrpl-nft-autominter";
 ```
-    or using CommonJS:
+or using CommonJS:
 
 ```javascript
 const { localMintWithJson } = require("xrpl-nft-autominter");
@@ -264,5 +266,5 @@ Hope you enjoyed auto minting
 
 # What's Next
 
-Future updates will include features such as minting and support for various cloud providers like GCP, Azure, IBM, Oracle, and Alibaba Cloud. It will also support IPFS providers such as Infura, Fleek, Temporal, and Textile. Additionally, there will be options for minting with and without JSON metadata.
+Future updates will include features such as minting and support for various cloud providers like Azure, IBM, Oracle, and Alibaba Cloud. It will also support IPFS providers such as Infura, Fleek, Temporal, and Textile. Additionally, there will be options for minting with and without JSON metadata.
 
